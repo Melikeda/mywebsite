@@ -43,11 +43,7 @@ function readLang(): Lang {
 }
 
 function readView(): ViewMode {
-  try {
-    return localStorage.getItem(KEYS.view) === "flat" ? "flat" : "folio";
-  } catch {
-    return "folio";
-  }
+  return "folio";
 }
 
 function persist(key: string, value: string) {
@@ -77,8 +73,8 @@ export function SiteProvider({ children }: { children: ReactNode }) {
   }, [theme]);
 
   useEffect(() => {
-    document.documentElement.dataset.view = view;
-    persist(KEYS.view, view);
+    document.documentElement.dataset.view = "folio";
+    persist(KEYS.view, "folio");
   }, [view]);
 
   useEffect(() => {

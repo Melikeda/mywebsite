@@ -13,7 +13,7 @@
         : "light";
     }
     root.lang = lang === "en" ? "en" : "tr";
-    if (view === "flat" || view === "folio") root.dataset.view = view;
+    root.dataset.view = "folio";
   } catch {
     /* ignore */
   }

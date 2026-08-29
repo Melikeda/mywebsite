@@ -2,18 +2,27 @@ export type Lang = "tr" | "en";
 
 export type Localized = { tr: string; en: string };
 
+export type TimelineStop = {
+  id: string;
+  when: Localized;
+  place: Localized;
+  role?: Localized;
+  note?: Localized;
+  tags?: Localized[];
+  href?: string;
+  photo?: string;
+  photoAlt?: Localized;
+};
+
 export function pick(lang: Lang, text: Localized): string {
   return text[lang];
 }
 
 export const PLATES = [
-  "threshold",
-  "about",
-  "campus",
-  "work",
-  "worlds",
-  "now",
-  "door",
+  "profile",
+  "timeline",
+  "projects",
+  "contact",
 ] as const;
 
 export type PlateId = (typeof PLATES)[number];
@@ -23,6 +32,7 @@ export const profile = {
   familyName: "Külahcı",
   fullName: "Melike Külahcı",
   githubUser: "Melikeda",
+  email: "m.edakulahci@mail.com",
   links: {
     github: "https://github.com/Melikeda",
     linkedin: "https://www.linkedin.com/in/melike-kulahci",
@@ -34,263 +44,384 @@ export const profile = {
 
 export const ui = {
   skip: { tr: "İçeriğe geç", en: "Skip to content" },
-  folio: { tr: "Folyo", en: "Folio" },
-  flat: { tr: "Düz", en: "Flat" },
-  paper: { tr: "Kâğıt", en: "Paper" },
-  ink: { tr: "Mürekkep", en: "Ink" },
+  folio: { tr: "Sayfa sayfa", en: "Paged" },
+  flat: { tr: "Kaydır", en: "Scroll" },
+  paper: { tr: "Açık", en: "Light" },
+  ink: { tr: "Koyu", en: "Dark" },
+  theme: { tr: "Tema", en: "Theme" },
+  view: { tr: "Görünüm", en: "View" },
+  viewNote: {
+    tr: "Sayfa sayfa: her bölüm tam ekran. Kaydır: normal sayfa.",
+    en: "Paged: one full screen per section. Scroll: a normal page.",
+  },
   open: { tr: "Aç", en: "Open" },
   demo: { tr: "Canlı", en: "Live" },
   repo: { tr: "Kod", en: "Code" },
   plates: {
-    threshold: { tr: "Eşik", en: "Threshold" },
-    about: { tr: "İz", en: "Trace" },
-    campus: { tr: "Kampüs", en: "Campus" },
-    work: { tr: "İş", en: "Work" },
-    worlds: { tr: "Dışarı", en: "Worlds" },
-    now: { tr: "Şimdi", en: "Now" },
-    door: { tr: "Kapı", en: "Door" },
+    profile: { tr: "Profil", en: "Profile" },
+    timeline: { tr: "Timeline", en: "Timeline" },
+    projects: { tr: "Proje", en: "Project" },
+    contact: { tr: "İletişim", en: "Contact" },
   } satisfies Record<PlateId, Localized>,
 };
 
-export const threshold = {
-  kicker: { tr: "Levha 00", en: "Plate 00" },
+export const intro = {
   role: {
-    tr: "Bilgisayar mühendisliği öğrencisi · bilgisayarlı görü ve makine öğrenmesi",
-    en: "Computer engineering student · computer vision and machine learning",
+    tr: "Bilgisayar Mühendisliği · 4. sınıf öğrencisi",
+    en: "Computer Engineering · 4th-year student",
   },
-  line: {
-    tr: "Makinenin görmeyi öğrendiği yerde duruyorum.",
-    en: "I work where machines learn to see.",
+  school: {
+    tr: "Düzce Üniversitesi",
+    en: "Düzce University",
   },
-  aside: {
-    tr: "Kaydır. Ya da düz görünüme geç — recruiter için tek bakış.",
-    en: "Scroll. Or switch to the flat view — one glance for a recruiter.",
-  },
+  film: [
+    {
+      src: "/profile/01.jpg",
+      alt: {
+        tr: "Mağazada ayna selfiesi",
+        en: "Mirror selfie in a shop",
+      },
+    },
+    {
+      src: "/profile/02.jpg",
+      alt: {
+        tr: "İskelede, gün batımında",
+        en: "On a pier at golden hour",
+      },
+    },
+    {
+      src: "/profile/04.jpg",
+      alt: {
+        tr: "Örgülü saçlarla dışarıda",
+        en: "Outdoors with braided hair",
+      },
+    },
+    {
+      src: "/profile/05.jpg",
+      alt: {
+        tr: "OpenCV ile görüntü işleme çalışması",
+        en: "Computer vision work with OpenCV",
+      },
+    },
+    {
+      src: "/profile/06.jpg",
+      alt: {
+        tr: "Kampüste, güneşli bir gün",
+        en: "On campus on a sunny day",
+      },
+    },
+    {
+      src: "/profile/07.jpg",
+      alt: {
+        tr: "Karlı ormanda",
+        en: "In a snowy forest",
+      },
+    },
+    {
+      src: "/profile/08.jpg",
+      alt: {
+        tr: "Parkta, çizgili gömlek ve tulum",
+        en: "In the park, striped shirt and overalls",
+      },
+    },
+    {
+      src: "/profile/09.jpg",
+      alt: {
+        tr: "Sarı çiçek tarlasında",
+        en: "In a field of yellow flowers",
+      },
+    },
+    {
+      src: "/profile/10.jpg",
+      alt: {
+        tr: "Alacakaranlıkta, lunapark geride",
+        en: "At dusk, Ferris wheel in the distance",
+      },
+    },
+    {
+      src: "/profile/11.jpg",
+      alt: {
+        tr: "Bulutların üstünde, yamaç paraşütü",
+        en: "Above the clouds, a paraglider",
+      },
+    },
+    {
+      src: "/profile/12.jpg",
+      alt: {
+        tr: "Hakime Erciyas Yabancı Diller Yüksekokulu",
+        en: "Hakime Erciyas School of Foreign Languages",
+      },
+    },
+    {
+      src: "/profile/13.jpg",
+      alt: {
+        tr: "Yıldızlı gecede, Samanyolu altında",
+        en: "Under the Milky Way at night",
+      },
+    },
+    {
+      src: "/profile/14.jpg",
+      alt: {
+        tr: "Teknede, kanyon arasında",
+        en: "On a boat in a river canyon",
+      },
+    },
+    {
+      src: "/profile/15.jpg",
+      alt: {
+        tr: "Kotor’da, eski kent duvarının önünde",
+        en: "In Kotor, in front of the old town wall",
+      },
+    },
+    {
+      src: "/profile/16.jpg",
+      alt: {
+        tr: "Sarı lalelerin arasında",
+        en: "Among yellow tulips",
+      },
+    },
+  ] as { src: string; alt: Localized }[],
 };
 
-export const about = {
-  kicker: { tr: "Levha 01 · yazısız biyografi", en: "Plate 01 · biography without a paragraph" },
-  title: { tr: "Altı nesne, bir kişi.", en: "Six objects, one person." },
-  hint: {
-    tr: "Kartlara dokun. Metin yok; iz var.",
-    en: "Touch a card. No paragraph — a trace.",
-  },
-  cards: [
+export const timeline: {
+  title: Localized;
+  emptyPhoto: Localized;
+  stops: TimelineStop[];
+} = {
+  title: { tr: "Timeline", en: "Timeline" },
+  emptyPhoto: { tr: "Anı fotoğrafı", en: "A still from there" },
+  stops: [
     {
-      id: "notebook",
-      word: { tr: "merak", en: "curiosity" },
-      caption: { tr: "Açık defter, yarım deney.", en: "An open notebook, a half-run experiment." },
-    },
-    {
-      id: "campus",
-      word: { tr: "kampüs", en: "campus" },
-      caption: {
-        tr: "Düzce Üniversitesi, bilgisayar mühendisliği.",
-        en: "Düzce University, computer engineering.",
-      },
-    },
-    {
-      id: "vision",
-      word: { tr: "görme", en: "vision" },
-      caption: {
-        tr: "Kamera, kutu, etiket: dünyayı çerçevelemek.",
-        en: "Camera, box, label: framing the world.",
-      },
-    },
-    {
-      id: "product",
-      word: { tr: "ürün", en: "product" },
-      caption: {
-        tr: "Model yetmez. API, uygulama, güvenlik eşiği.",
-        en: "A model is not enough. API, app, a safety threshold.",
-      },
-    },
-    {
-      id: "writing",
-      word: { tr: "yazı", en: "writing" },
-      caption: {
-        tr: "Öğrendiğini dışarıya bırakmak.",
-        en: "Putting what I learn out in the open.",
-      },
-    },
-    {
-      id: "trail",
-      word: { tr: "iz", en: "trail" },
-      caption: {
-        tr: "Staj, akademi, yarışma — aynı hat.",
-        en: "Internships, academy, contests — one line.",
-      },
-    },
-  ],
-};
-
-export const campus = {
-  kicker: { tr: "Levha 02 · okul ve istasyonlar", en: "Plate 02 · school and stations" },
-  title: { tr: "Akademik hat.", en: "The academic line." },
-  stations: [
-    {
-      mark: "01",
+      id: "duzce",
+      when: { tr: "2022 · hala devam etmekte", en: "2022 · still ongoing" },
       place: { tr: "Düzce Üniversitesi", en: "Düzce University" },
-      role: { tr: "Bilgisayar Mühendisliği", en: "Computer Engineering" },
-      note: {
-        tr: "Asıl hat. Görü, veri, yazılım aynı masada.",
-        en: "The main track. Vision, data, and software on the same desk.",
+      role: {
+        tr: "Bilgisayar Mühendisliği · 4. sınıf",
+        en: "Computer Engineering · 4th year",
       },
+      tags: [
+        { tr: "Yazılım", en: "Software" },
+        { tr: "Veri", en: "Data" },
+        { tr: "Bilgisayarlı görü", en: "Computer vision" },
+        { tr: "Machine learning", en: "Machine learning" },
+        { tr: "C++", en: "C++" },
+        { tr: "Python", en: "Python" },
+        { tr: "OOP", en: "OOP" },
+        { tr: "Takım çalışması", en: "Teamwork" },
+      ],
       href: "https://www.duzce.edu.tr/",
+      photo: "/campus/duzce.jpg",
+      photoAlt: {
+        tr: "Düzce Üniversitesi kampüsünde, çiçekli ağacın önünde.",
+        en: "On the Düzce University campus, by a flowering tree.",
+      },
     },
     {
-      mark: "02",
-      place: { tr: "Cerebrum Tech", en: "Cerebrum Tech" },
-      role: { tr: "Ar-Ge stajı · Yolocilin", en: "R&D internship · Yolocilin" },
-      note: {
-        tr: "İlaç kutusu tanıma: modelden Flutter istemciye kadar.",
-        en: "Medicine-box recognition: from the model to a Flutter client.",
+      id: "dld",
+      when: { tr: "Ekim 2024 – Mayıs 2025", en: "Oct 2024 – May 2025" },
+      place: { tr: "Değişim Liderleri Derneği", en: "Değişim Liderleri Derneği" },
+      role: {
+        tr: "Gönüllü · Kıvılcımlar Programı · Kuanta",
+        en: "Volunteer · Kıvılcımlar Programme · Kuanta",
       },
-      href: "https://github.com/Melikeda/yolocilin",
+      note: {
+        tr: "Liderliğe İlk Adım Çalıştayı. Kuanta ile PCOS farkındalık projesi.",
+        en: "First Step to Leadership workshop. PCOS awareness project with Kuanta.",
+      },
+      tags: [
+        { tr: "Liderlik", en: "Leadership" },
+        { tr: "Takım çalışması", en: "Teamwork" },
+        { tr: "Paydaş bulma", en: "Stakeholder outreach" },
+        { tr: "PCOS çalışmaları", en: "PCOS work" },
+      ],
+      href: "https://www.degisimliderleri.org/",
+      photo: "/timeline/dld.jpg",
+      photoAlt: {
+        tr: "Değişim Liderleri Derneği, Liderliğe İlk Adım Çalıştayı ekip fotoğrafı.",
+        en: "Değişim Liderleri Derneği, First Step to Leadership workshop group photo.",
+      },
     },
     {
-      mark: "03",
-      place: { tr: "Türkiye Yapay Zeka Akademisi", en: "Türkiye AI Academy" },
-      role: { tr: "ML ve veri bilimi hattı", en: "ML and data-science track" },
-      note: {
-        tr: "Klasik ML’den duygu analizine: ölçülen iş.",
-        en: "From classical ML to sentiment work you can measure.",
+      id: "argenova",
+      when: { tr: "Temmuz 2025 – Ağustos 2025", en: "July 2025 – August 2025" },
+      place: { tr: "Argenova", en: "Argenova" },
+      role: {
+        tr: "Intern · online bilişim stajı",
+        en: "Intern · remote informatics",
       },
-      href: "https://turkiyeyapayzekaakademisi.com/",
-    },
-    {
-      mark: "04",
-      place: { tr: "Argenova · TNC", en: "Argenova · TNC" },
-      role: { tr: "Staj izleri", en: "Internship traces" },
       note: {
-        tr: "Sahada kod: not defteri değil, teslim.",
-        en: "Code in the field — delivery, not a notebook.",
+        tr: "Uzaktan, kısa yaz dönemi.",
+        en: "Remote, a short summer term.",
       },
+      tags: [
+        { tr: "Excel/CSV", en: "Excel/CSV" },
+        { tr: "Girin", en: "Girin" },
+        { tr: "FastAPI", en: "FastAPI" },
+        { tr: "Ollama", en: "Ollama" },
+        { tr: "LLaMA 3", en: "LLaMA 3" },
+        { tr: "Qdrant", en: "Qdrant" },
+        { tr: "RAG", en: "RAG" },
+        { tr: "Flutter", en: "Flutter" },
+        { tr: "AI Mesai Chatbot", en: "AI hours chatbot" },
+      ],
       href: "https://github.com/Melikeda/Argenova_Internship",
+      photo: "/campus/argenova.jpg",
+      photoAlt: {
+        tr: "Argenova stajında dizüstü: kod ve model eğitimi. Ofis arkası bulanık.",
+        en: "Laptop during the Argenova internship: code and model training. Office behind is blurred.",
+      },
     },
-  ],
-};
-
-export const work = {
-  kicker: { tr: "Levha 03 · seçilmiş iş", en: "Plate 03 · selected work" },
-  title: { tr: "Az kart, net iz.", en: "Few cards, a clear trace." },
-  items: [
     {
-      id: "yolocilin",
-      year: "2026",
-      tags: ["YOLOv8", "EasyOCR", "FastAPI", "Flutter"],
+      id: "cerebrum",
+      when: { tr: "Haziran 2026 – Ağustos 2026", en: "June 2026 – August 2026" },
+      place: {
+        tr: "Cerebrum Tech · Bilkent Cyberpark, Ankara",
+        en: "Cerebrum Tech · Bilkent Cyberpark, Ankara",
+      },
+      role: { tr: "AI Intern · Ar-Ge · ofis", en: "AI Intern · R&D · on site" },
+      tags: [
+        { tr: "YOLOv8n", en: "YOLOv8n" },
+        { tr: "OpenCV", en: "OpenCV" },
+        { tr: "EasyOCR", en: "EasyOCR" },
+        { tr: "RapidFuzz", en: "RapidFuzz" },
+        { tr: "FastAPI", en: "FastAPI" },
+        { tr: "Flutter", en: "Flutter" },
+        { tr: "Docker", en: "Docker" },
+        { tr: "Kaggle", en: "Kaggle" },
+        { tr: "Medium", en: "Medium" },
+      ],
       href: "https://github.com/Melikeda/yolocilin",
-      live: null,
-      title: { tr: "Yolocilin", en: "Yolocilin" },
-      line: {
-        tr: "İlaç kutusunu yanlış göstermemek üzere kurulmuş uçtan uca sistem.",
-        en: "An end-to-end system built to refuse the wrong medicine rather than guess.",
+      photo: "/campus/cerebrum.jpg",
+      photoAlt: {
+        tr: "Cerebrum Tech ofisinde yeşil duvar ve logo.",
+        en: "Cerebrum Tech green wall and logo.",
       },
     },
     {
-      id: "kariyer",
-      year: "2025",
-      tags: ["TypeScript", "AI", "Vercel"],
-      href: "https://github.com/Melikeda/kariyerpusulam-gelecegin-meslekleri",
-      live: "https://kariyerpusulam.vercel.app",
-      title: { tr: "KariyerPusulam", en: "KariyerPusulam" },
-      line: {
-        tr: "Kodluyoruz bitirme işi: geleceğin meslekleri için keşif yüzeyi.",
-        en: "Kodluyoruz capstone: a discovery surface for emerging careers.",
+      id: "lcoy",
+      when: { tr: "21–23 Ağustos 2026", en: "21–23 Aug 2026" },
+      place: { tr: "LCOY Türkiye 2026", en: "LCOY Türkiye 2026" },
+      role: {
+        tr: "Katılımcı · YOUNGO / UNFCCC",
+        en: "Participant · YOUNGO / UNFCCC",
+      },
+      note: {
+        tr: "TOBB İkiz Kuleler, Ankara. COP31 yolunda yerel gençlik iklim konferansı.",
+        en: "TOBB Twin Towers, Ankara. Local Conference of Youth on the road to COP31.",
+      },
+      tags: [
+        { tr: "İklim", en: "Climate" },
+        { tr: "Sürdürülebilirlik", en: "Sustainability" },
+        { tr: "Politika", en: "Policy" },
+        { tr: "Gençlik savunuculuğu", en: "Youth advocacy" },
+        { tr: "Uluslararası iş birliği", en: "International cooperation" },
+      ],
+      href: "https://unfccc.int/topics/education-and-youth/youngo",
+      photo: "/timeline/lcoy.jpg",
+      photoAlt: {
+        tr: "LCOY Türkiye 2026, TOBB İkiz Kuleler, Ankara.",
+        en: "LCOY Türkiye 2026, TOBB Twin Towers, Ankara.",
+      },
+    },
+  ] satisfies TimelineStop[],
+};
+
+export const projects = {
+  title: { tr: "Yolocilin", en: "Yolocilin" },
+  line: {
+    tr: "Kamerayla ilaç kutusunu çek. Uygulama okur, katalogla eşler, kısaca açıklar.",
+    en: "Point the camera at a medicine box. The app reads it, matches a catalog, and explains.",
+  },
+  href: "https://github.com/Melikeda/yolocilin",
+  dataset: {
+    label: { tr: "Kaggle veri seti", en: "Kaggle dataset" },
+    href: "https://www.kaggle.com/datasets/melikeklahc/yolocilin-medicine-box-detection",
+  },
+  disclaimer: {
+    tr: "Tıbbi tavsiye değil — paket yazısını okur, eczacıya bırakır.",
+    en: "Not medical advice — it reads the pack, then leaves the rest to a pharmacist.",
+  },
+  beats: [
+    {
+      n: "01",
+      word: { tr: "Giriş", en: "Home" },
+      note: {
+        tr: "Hızlı ilaç tarama: kamera, barkod veya galeri.",
+        en: "Quick scan: camera, barcode, or gallery.",
       },
     },
     {
-      id: "imdb",
-      year: "2025",
-      tags: ["scikit-learn", "TF-IDF", "F1≈0.89"],
-      href: "https://github.com/Melikeda/imdb-sentiment-analysis",
-      live: null,
-      title: { tr: "IMDB duygu", en: "IMDB sentiment" },
-      line: {
-        tr: "Klasik ML hâlâ işe yarar: TF-IDF ve ölçülmüş F1.",
-        en: "Classical ML still ships: TF-IDF and a measured F1.",
+      n: "02",
+      word: { tr: "Kamera", en: "Camera" },
+      note: {
+        tr: "Kamerayı dene, kutuyu kadraja al.",
+        en: "Try the camera and frame the box.",
       },
     },
     {
-      id: "gesture",
-      year: "2025",
-      tags: ["OpenCV", "MediaPipe"],
-      href: "https://github.com/Melikeda/gesture-volume-control",
-      live: null,
-      title: { tr: "El ile ses", en: "Gesture volume" },
-      line: {
-        tr: "El hareketiyle sistem sesi — görünün en sade hali.",
-        en: "System volume from a hand — vision at its simplest.",
+      n: "03",
+      word: { tr: "Sonuç", en: "Result" },
+      note: {
+        tr: "Kutu eşleşir, kısa bilgi açılır.",
+        en: "The box matches and a short note opens.",
+      },
+    },
+    {
+      n: "04",
+      word: { tr: "Barkod", en: "Barcode" },
+      note: {
+        tr: "Kodu çerçeveye hizala, oku.",
+        en: "Align the code and read it.",
+      },
+    },
+    {
+      n: "05",
+      word: { tr: "Geçmiş", en: "History" },
+      note: {
+        tr: "Önceki taramalar bir listede durur.",
+        en: "Earlier scans stay in a list.",
       },
     },
   ],
 };
 
-export const worlds = {
-  kicker: { tr: "Levha 04 · dış dünyalar", en: "Plate 04 · outer worlds" },
-  title: { tr: "Aynı kişi, dört kapı.", en: "Same person, four doors." },
+export const contact = {
+  title: { tr: "İletişim.", en: "Contact." },
+  webHint: {
+    tr: "Kırmızı düğmeyi çek, bırak. Yay geri çeker, yarım ağ fırlar.",
+    en: "Pull the red button, then let go. It springs back and a half-web shoots out.",
+  },
+  webTrigger: { tr: "Ağ", en: "Web" },
+  mailLabel: { tr: "E-posta", en: "Email" },
+  campusNote: {
+    tr: "Düzce Üniversitesi · Mühendislik Fakültesi",
+    en: "Düzce University · Faculty of Engineering",
+  },
+  campusPhoto: "/campus/muhendislik.jpg",
+  campusPhotoAlt: {
+    tr: "Mühendislik Fakültesi tabelasının önünde arkadaşlarla.",
+    en: "With friends in front of the Faculty of Engineering sign.",
+  },
   tiles: [
     {
-      id: "linkedin",
+      id: "linkedin" as const,
       label: "LinkedIn",
       href: profile.links.linkedin,
-      blurb: {
-        tr: "İş ve staj hattı.",
-        en: "Work and internships.",
-      },
     },
     {
-      id: "github",
+      id: "github" as const,
       label: "GitHub",
       href: profile.links.github,
-      blurb: {
-        tr: `@${profile.githubUser} · kodun asıl yeri.`,
-        en: `@${profile.githubUser} · where the code lives.`,
-      },
     },
     {
-      id: "kaggle",
+      id: "kaggle" as const,
       label: "Kaggle",
       href: profile.links.kaggle,
-      blurb: {
-        tr: "Veri, notebook, açık set.",
-        en: "Data, notebooks, a public set.",
-      },
     },
     {
-      id: "medium",
+      id: "medium" as const,
       label: "Medium",
       href: profile.links.medium,
-      blurb: {
-        tr: "Öğrendikçe yazmak.",
-        en: "Writing as I learn.",
-      },
     },
   ],
-};
-
-export const now = {
-  kicker: { tr: "Levha 05 · şu an", en: "Plate 05 · currently" },
-  title: { tr: "Takip ettiğim hat.", en: "The line I am following." },
-  items: [
-    { tr: "Ürüne giden bilgisayarlı görü", en: "Computer vision that reaches a product" },
-    { tr: "Yanlış tahmini reddeden eşikler", en: "Thresholds that refuse a wrong guess" },
-    { tr: "Veritabanı serisi · Medium", en: "A database series on Medium" },
-    { tr: "FastAPI + Flutter teslimi", en: "Shipping FastAPI with Flutter" },
-    { tr: "Klasik ML’i ölçerek tutmak", en: "Keeping classical ML, measured" },
-    { tr: "Açık veri ve tekrarlanabilir deneme", en: "Open data and repeatable trials" },
-  ],
-};
-
-export const door = {
-  kicker: { tr: "Levha 06 · kapı", en: "Plate 06 · the door" },
-  title: { tr: "Buradan çıkılır.", en: "This is the way out." },
-  body: {
-    tr: "İlan, staj, araştırma — LinkedIn veya GitHub yeter. CV dosyasını sonra bu levhaya ekleriz.",
-    en: "Roles, internships, research — LinkedIn or GitHub is enough. A CV file can join this plate later.",
-  },
-  credit: {
-    tr: "Bu site bir folyo: yön ve metin bana ait. Üretimde Cursor kullandım; şablon yapıştırmadım.",
-    en: "This site is a folio: direction and copy are mine. I used Cursor to build it — I did not paste a template.",
-  },
 };
