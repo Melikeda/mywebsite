@@ -1,12 +1,12 @@
 import { pick, ui, profile, PLATES, type Lang } from "../content/site";
-import { useSite, type Theme, type ViewMode } from "../context/SiteContext";
+import { useSite, type Theme } from "../context/SiteContext";
 
 export function Chrome() {
-  const { lang, theme, view, setLang, setTheme, setView } = useSite();
+  const { lang, theme, setLang, setTheme } = useSite();
 
   return (
     <>
-      <a className="skip" href="#threshold">
+      <a className="skip" href="#profile">
         {pick(lang, ui.skip)}
       </a>
       <header className="chrome">
@@ -29,22 +29,13 @@ export function Chrome() {
             onChange={(value) => setLang(value as Lang)}
           />
           <Segment
-            ariaLabel="theme"
+            ariaLabel={pick(lang, ui.theme)}
             value={theme}
             options={[
               { value: "light", label: pick(lang, ui.paper) },
               { value: "dark", label: pick(lang, ui.ink) },
             ]}
             onChange={(value) => setTheme(value as Theme)}
-          />
-          <Segment
-            ariaLabel="view"
-            value={view}
-            options={[
-              { value: "folio", label: pick(lang, ui.folio) },
-              { value: "flat", label: pick(lang, ui.flat) },
-            ]}
-            onChange={(value) => setView(value as ViewMode)}
           />
         </div>
       </header>

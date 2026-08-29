@@ -1,13 +1,10 @@
 import { SiteProvider } from "./context/SiteContext";
 import { Chrome } from "./components/Chrome";
 import { PlateNav } from "./components/PlateNav";
-import { Threshold } from "./components/plates/Threshold";
-import { About } from "./components/plates/About";
-import { Campus } from "./components/plates/Campus";
-import { Work } from "./components/plates/Work";
-import { Worlds } from "./components/plates/Worlds";
-import { Now } from "./components/plates/Now";
-import { Door } from "./components/plates/Door";
+import { Profile } from "./components/plates/Profile";
+import { Timeline } from "./components/plates/Timeline";
+import { Projects } from "./components/plates/Projects";
+import { Contact } from "./components/plates/Contact";
 
 export default function App() {
   return (
@@ -16,13 +13,10 @@ export default function App() {
       <Chrome />
       <PlateNav />
       <main>
-        <Threshold />
-        <About />
-        <Campus />
-        <Work />
-        <Worlds />
-        <Now />
-        <Door />
+        <Profile />
+        <Timeline />
+        <Projects />
+        <Contact />
       </main>
     </SiteProvider>
   );

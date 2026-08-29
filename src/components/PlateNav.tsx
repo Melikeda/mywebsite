@@ -3,6 +3,7 @@ import { useSite } from "../context/SiteContext";
 
 export function PlateNav() {
   const { lang, active } = useSite();
+  if (active === 0) return null;
 
   return (
     <nav className="rail" aria-label="progress">
