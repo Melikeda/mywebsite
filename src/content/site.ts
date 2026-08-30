@@ -67,8 +67,8 @@ export const ui = {
 
 export const intro = {
   role: {
-    tr: "Bilgisayar Mühendisliği · 4. sınıf öğrencisi",
-    en: "Computer Engineering · 4th-year student",
+    tr: "Bilgisayar Mühendisliği",
+    en: "Computer Engineering",
   },
   school: {
     tr: "Düzce Üniversitesi",
@@ -76,14 +76,7 @@ export const intro = {
   },
   film: [
     {
-      src: "/profile/01.jpg",
-      alt: {
-        tr: "Mağazada ayna selfiesi",
-        en: "Mirror selfie in a shop",
-      },
-    },
-    {
-      src: "/profile/02.jpg",
+      src: "/profile/03.jpg",
       alt: {
         tr: "İskelede, gün batımında",
         en: "On a pier at golden hour",
@@ -92,22 +85,36 @@ export const intro = {
     {
       src: "/profile/04.jpg",
       alt: {
-        tr: "Örgülü saçlarla dışarıda",
-        en: "Outdoors with braided hair",
+        tr: "Taş duvarın önünde",
+        en: "In front of a stone wall",
       },
     },
     {
       src: "/profile/05.jpg",
       alt: {
-        tr: "OpenCV ile görüntü işleme çalışması",
-        en: "Computer vision work with OpenCV",
+        tr: "Örgülü saçlarla dışarıda",
+        en: "Outdoors with braided hair",
+      },
+    },
+    {
+      src: "/profile/01.jpg",
+      alt: {
+        tr: "Sarı çiçekle, kapüşonlu",
+        en: "In a hoodie, with a yellow flower",
+      },
+    },
+    {
+      src: "/profile/02.jpg",
+      alt: {
+        tr: "Teknede, Galata arkasında",
+        en: "On a ferry, Galata behind",
       },
     },
     {
       src: "/profile/06.jpg",
       alt: {
-        tr: "Kampüste, güneşli bir gün",
-        en: "On campus on a sunny day",
+        tr: "Parkta, akşam ışığında",
+        en: "In the park at dusk",
       },
     },
     {
@@ -120,64 +127,43 @@ export const intro = {
     {
       src: "/profile/08.jpg",
       alt: {
-        tr: "Parkta, çizgili gömlek ve tulum",
-        en: "In the park, striped shirt and overalls",
-      },
-    },
-    {
-      src: "/profile/09.jpg",
-      alt: {
-        tr: "Sarı çiçek tarlasında",
-        en: "In a field of yellow flowers",
-      },
-    },
-    {
-      src: "/profile/10.jpg",
-      alt: {
-        tr: "Alacakaranlıkta, lunapark geride",
-        en: "At dusk, Ferris wheel in the distance",
-      },
-    },
-    {
-      src: "/profile/11.jpg",
-      alt: {
-        tr: "Bulutların üstünde, yamaç paraşütü",
-        en: "Above the clouds, a paraglider",
-      },
-    },
-    {
-      src: "/profile/12.jpg",
-      alt: {
-        tr: "Hakime Erciyas Yabancı Diller Yüksekokulu",
-        en: "Hakime Erciyas School of Foreign Languages",
-      },
-    },
-    {
-      src: "/profile/13.jpg",
-      alt: {
-        tr: "Yıldızlı gecede, Samanyolu altında",
-        en: "Under the Milky Way at night",
-      },
-    },
-    {
-      src: "/profile/14.jpg",
-      alt: {
         tr: "Teknede, kanyon arasında",
         en: "On a boat in a river canyon",
       },
     },
     {
-      src: "/profile/15.jpg",
+      src: "/profile/09.jpg",
       alt: {
         tr: "Kotor’da, eski kent duvarının önünde",
         en: "In Kotor, in front of the old town wall",
       },
     },
     {
-      src: "/profile/16.jpg",
+      src: "/profile/10.jpg",
       alt: {
-        tr: "Sarı lalelerin arasında",
-        en: "Among yellow tulips",
+        tr: "Kırmızı lalelerle",
+        en: "With red tulips",
+      },
+    },
+    {
+      src: "/profile/11.jpg",
+      alt: {
+        tr: "Sarı çiçek tarlasında",
+        en: "In a field of yellow flowers",
+      },
+    },
+    {
+      src: "/profile/12.jpg",
+      alt: {
+        tr: "Bulutların üstünde, yamaç paraşütü",
+        en: "Above the clouds, a paraglider",
+      },
+    },
+    {
+      src: "/profile/13.jpg",
+      alt: {
+        tr: "Alacakaranlıkta, lunapark geride",
+        en: "At dusk, Ferris wheel in the distance",
       },
     },
   ] as { src: string; alt: Localized }[],
@@ -352,10 +338,10 @@ export const projects = {
     },
     {
       n: "02",
-      word: { tr: "Kamera", en: "Camera" },
+      word: { tr: "Önizleme", en: "Preview" },
       note: {
-        tr: "Kamerayı dene, kutuyu kadraja al.",
-        en: "Try the camera and frame the box.",
+        tr: "Fotoğrafı gör, OCR modunu seç, analiz et.",
+        en: "See the photo, pick an OCR mode, then analyze.",
       },
     },
     {
@@ -388,8 +374,8 @@ export const projects = {
 export const contact = {
   title: { tr: "İletişim.", en: "Contact." },
   webHint: {
-    tr: "Kırmızı düğmeyi çek, bırak. Yay geri çeker, yarım ağ fırlar.",
-    en: "Pull the red button, then let go. It springs back and a half-web shoots out.",
+    tr: "Kırmızı düğmeyi çek, bırak.",
+    en: "Pull the red button, then let go.",
   },
   webTrigger: { tr: "Ağ", en: "Web" },
   mailLabel: { tr: "E-posta", en: "Email" },
@@ -403,6 +389,11 @@ export const contact = {
     en: "With friends in front of the Faculty of Engineering sign.",
   },
   tiles: [
+    {
+      id: "mail" as const,
+      label: profile.email,
+      href: `mailto:${profile.email}`,
+    },
     {
       id: "linkedin" as const,
       label: "LinkedIn",

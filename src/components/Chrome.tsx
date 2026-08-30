@@ -19,7 +19,7 @@ export function Chrome() {
           ))}
         </nav>
         <div className="chrome__tools">
-          <Segment
+          <Toggle
             ariaLabel="language"
             value={lang}
             options={[
@@ -28,7 +28,8 @@ export function Chrome() {
             ]}
             onChange={(value) => setLang(value as Lang)}
           />
-          <Segment
+          <Toggle
+            className="toggle--theme"
             ariaLabel={pick(lang, ui.theme)}
             value={theme}
             options={[
@@ -45,30 +46,32 @@ export function Chrome() {
 
 type Option = { value: string; label: string };
 
-function Segment({
+function Toggle({
   value,
   options,
   onChange,
   ariaLabel,
+  className,
 }: {
   value: string;
-  options: Option[];
+  options: [Option, Option] | Option[];
   onChange: (value: string) => void;
   ariaLabel: string;
+  className?: string;
 }) {
+  const on = options[1]?.value === value;
   return (
-    <div className="seg" role="group" aria-label={ariaLabel}>
-      {options.map((option) => (
-        <button
-          key={option.value}
-          type="button"
-          className={option.value === value ? "is-on" : undefined}
-          aria-pressed={option.value === value}
-          onClick={() => onChange(option.value)}
-        >
-          {option.label}
-        </button>
-      ))}
-    </div>
+    <button
+      type="button"
+      className={`toggle${on ? " is-on" : ""}${className ? ` ${className}` : ""}`}
+      role="switch"
+      aria-checked={on}
+      aria-label={ariaLabel}
+      onClick={() => onChange(on ? options[0].value : options[1].value)}
+    >
+      <span className="toggle__knob" aria-hidden="true" />
+      <span className="toggle__opt">{options[0].label}</span>
+      <span className="toggle__opt">{options[1].label}</span>
+    </button>
   );
 }

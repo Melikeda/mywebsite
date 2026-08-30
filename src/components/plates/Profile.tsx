@@ -5,7 +5,8 @@ import { useSite } from "../../context/SiteContext";
 
 const EMPTY_SLOTS = 4;
 const YAW = -34;
-const LAPS = 3;
+const LAPS = 2;
+const EXIT = 1.35;
 
 type Frame = { src: string; alt: { tr: string; en: string } };
 
@@ -18,10 +19,14 @@ type OpenShot = {
   h: number;
 };
 
-function wrap(min: number, max: number, value: number) {
-  const range = max - min;
-  if (range <= 0) return min;
-  return ((((value - min) % range) + range) % range) + min;
+function cardSlot(index: number, scroll: number, count: number, laps: number) {
+  let best = Number.POSITIVE_INFINITY;
+  for (let lap = 0; lap < laps; lap += 1) {
+    const pos = index + lap * count - scroll;
+    if (pos < -EXIT) continue;
+    if (pos < best) best = pos;
+  }
+  return best;
 }
 
 type LakeWash = { up: string; down: string };
@@ -224,14 +229,23 @@ function UnveilGallery({ frames, lang }: { frames: Frame[]; lang: "tr" | "en" })
 
       cardRefs.current.forEach((el, index) => {
         if (!el) return;
-        const slot = wrap(-count / 2, count / 2, index - scrollRef.current);
+        const slot = cardSlot(index, scrollRef.current, count, LAPS);
+        if (!Number.isFinite(slot)) {
+          el.style.visibility = "hidden";
+          el.style.pointerEvents = "none";
+          el.style.opacity = "0";
+          return;
+        }
         const x = slot * step;
         const y = x * 0.48;
         const z = -x * depth;
         const lift = hoverRef.current === index ? 1 : 0;
-        const away = Math.abs(slot);
-        const fade = away < 2 ? 1 : Math.max(0, 1 - (away - 2) / 0.55);
-        const scale = Math.max(0.34, 1 - away * 0.22);
+        const fadeRight = slot > 2 ? Math.max(0, 1 - (slot - 2) / 0.55) : 1;
+        const fadeLeft = slot < -0.28 ? Math.max(0, 1 + (slot + 0.28) / (EXIT - 0.28)) : 1;
+        const fade = Math.min(fadeRight, fadeLeft);
+        const scale = slot < 0
+          ? Math.min(1.34, 1 - slot * 0.22)
+          : Math.max(0.34, 1 - slot * 0.22);
         const near = fade > 0.02;
         el.style.visibility = near ? "visible" : "hidden";
         el.style.pointerEvents = near && !shot ? "auto" : "none";

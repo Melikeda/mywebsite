@@ -7,14 +7,19 @@ export function Projects() {
   const { lang } = useSite();
 
   return (
-    <Plate id="projects" index={2}>
+    <Plate id="projects" index={2} className="plate--yolo">
       <div className="yolo">
         <div className="yolo__pills" aria-hidden="true">
-          <span />
-          <span />
-          <span />
-          <span />
-          <span />
+          <span className="yolo-cap yolo-cap--mint" />
+          <span className="yolo-cap yolo-cap--pink" />
+          <span className="yolo-cap yolo-cap--blue" />
+          <span className="yolo-cap yolo-cap--gold" />
+          <span className="yolo-cap yolo-cap--mint" />
+          <span className="yolo-cap yolo-cap--blue" />
+          <span className="yolo-cap yolo-cap--pink" />
+          <span className="yolo-cap yolo-cap--gold" />
+          <span className="yolo-cap yolo-cap--mint" />
+          <span className="yolo-cap yolo-cap--blue" />
         </div>
         <div className="yolo__copy">
           <h2 id="projects-heading" className="title">

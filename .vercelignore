@@ -1,0 +1,5 @@
+tmp-chrome-*
+tmp-*.png
+node_modules
+dist
+.git
