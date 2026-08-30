@@ -9,10 +9,7 @@ applied vision systems. One page. Four plates. Turkish and English.
 [![Vite](https://img.shields.io/badge/Vite-8-646cff.svg)](https://vite.dev)
 
 <p align="center">
-  <img src="public/profile/06.jpg" alt="On campus" width="24%" />
-  <img src="public/campus/duzce.jpg" alt="Düzce University" width="24%" />
-  <img src="public/projects/yolo/home.png" alt="Yolocilin home screen" width="24%" />
-  <img src="public/timeline/lcoy.jpg" alt="LCOY Türkiye 2026" width="24%" />
+  Kampüs / profil · Düzce Üniversitesi · Yolocilin (hızlı ilaç tarama) · LCOY Türkiye
 </p>
 
 <p align="center">
