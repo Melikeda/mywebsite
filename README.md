@@ -141,4 +141,4 @@ phone number or student number.
 ## License
 
 Source code is [MIT](LICENSE). Photographs and app screenshots stay
-© Melike Külahcı.
+© Melike Külahcı — see [NOTICE](NOTICE).
