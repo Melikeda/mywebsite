@@ -113,12 +113,13 @@ npm run preview
 
 ## Deploy
 
-Vercel is the intended host (`vercel.json` + `public/_headers`). Production
-branch: `main`. The live connect step waits for an explicit go-ahead so the
-site can keep changing without a half-wired domain.
+Live: **[portfoliomell.vercel.app](https://portfoliomell.vercel.app)**
 
-After the first production URL, run [securityheaders.com](https://securityheaders.com)
-and set this repo’s **Website** field to that URL.
+Hosted on Vercel from this repo (`vercel.json` + `public/_headers`). After
+the Vercel GitHub app is connected, pushes to `main` ship a new production
+build. Until then: `npx vercel --prod`.
+
+Check live headers at [securityheaders.com](https://securityheaders.com).
 
 ---
 
