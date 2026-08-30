@@ -7,15 +7,15 @@ const HOLD_MS = 2800;
 const REELS: { src: string; label: Localized }[] = [
   {
     src: "/projects/yolo/home.png",
-    label: { tr: "Ana sayfa", en: "Home" },
+    label: { tr: "Hızlı ilaç tarama", en: "Quick medicine scan" },
   },
   {
-    src: "/projects/yolo/camera.png",
-    label: { tr: "Kamerayı dene", en: "Try the camera" },
+    src: "/projects/yolo/preview.png",
+    label: { tr: "Önizleme", en: "Preview" },
   },
   {
     src: "/projects/yolo/result-photo.png",
-    label: { tr: "Fotoğraf sonucu", en: "Photo result" },
+    label: { tr: "Analiz sonucu", en: "Analysis result" },
   },
   {
     src: "/projects/yolo/qr.png",
@@ -45,9 +45,10 @@ export function YoloPhone() {
   }, []);
 
   return (
-    <figure className="phone" data-step={step}>
+    <figure className="phone" data-step={step} aria-label={pick(lang, REELS[step].label)}>
       <div className="phone__stage">
         <div className="phone__bezel">
+          <span className="phone__edge" aria-hidden="true" />
           <span className="phone__notch" />
           <div className="phone__screen" aria-live="polite">
             {REELS.map((reel, index) => (
@@ -62,7 +63,6 @@ export function YoloPhone() {
           </div>
         </div>
       </div>
-      <figcaption>{pick(lang, REELS[step].label)}</figcaption>
     </figure>
   );
 }

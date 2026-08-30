@@ -16,6 +16,8 @@ dist-ssr
 .env.*
 !.env.example
 .vercel
+tmp-chrome-*
+tmp-*.png
 *.pem
 *.p12
 *.key

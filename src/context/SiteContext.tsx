@@ -31,15 +31,11 @@ type SiteContextValue = {
 const SiteContext = createContext<SiteContextValue | null>(null);
 
 function readTheme(): Theme {
-  const fromDom = document.documentElement.dataset.theme;
-  if (fromDom === "dark" || fromDom === "light") return fromDom;
-  return window.matchMedia("(prefers-color-scheme: dark)").matches
-    ? "dark"
-    : "light";
+  return document.documentElement.dataset.theme === "dark" ? "dark" : "light";
 }
 
 function readLang(): Lang {
-  return document.documentElement.lang === "en" ? "en" : "tr";
+  return document.documentElement.lang === "tr" ? "tr" : "en";
 }
 
 function readView(): ViewMode {
