@@ -2,7 +2,6 @@
   try {
     const theme = localStorage.getItem("mell.theme");
     const lang = localStorage.getItem("mell.lang");
-    const view = localStorage.getItem("mell.view");
     const root = document.documentElement;
     if (theme === "dark" || theme === "light") {
       root.dataset.theme = theme;
