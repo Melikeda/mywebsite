@@ -1,4 +1,4 @@
-# Melike Külahcı — folio
+# melikekulahci
 
 **Illustrated bilingual site** for a computer-engineering student who builds
 applied vision systems. One page. Four plates. Turkish and English.
@@ -113,7 +113,7 @@ npm run preview
 
 ## Deploy
 
-Live: **[portfoliomell.vercel.app](https://portfoliomell.vercel.app)**
+Live: **[melikekulahci.vercel.app](https://melikekulahci.vercel.app)**
 
 Hosted on Vercel from this repo (`vercel.json` + `public/_headers`). After
 the Vercel GitHub app is connected, pushes to `main` ship a new production
