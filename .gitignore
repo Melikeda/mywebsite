@@ -15,6 +15,13 @@ dist-ssr
 .env
 .env.*
 !.env.example
+.vercel
+*.pem
+*.p12
+*.key
+id_rsa
+id_rsa.pub
+credentials.json
 
 # Editor directories and files
 .vscode/*
