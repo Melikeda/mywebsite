@@ -5,7 +5,7 @@ import { useSite } from "../../context/SiteContext";
 
 const EMPTY_SLOTS = 4;
 const YAW = -34;
-const LAPS = 2;
+const LAPS = 1;
 const EXIT = 1.35;
 
 type Frame = { src: string; alt: { tr: string; en: string } };
@@ -372,11 +372,24 @@ export function Profile() {
     <Plate id="profile" index={0} className="plate--hero">
       <UnveilGallery frames={frames} lang={lang} />
       <div className="intro intro--hero">
-        <h1 className="intro__name" id="profile-heading">
-          {profile.fullName}
-        </h1>
-        <p className="intro__role">{pick(lang, intro.role)}</p>
-        <p className="intro__school">{pick(lang, intro.school)}</p>
+        <div className="intro__who">
+          <h1 className="intro__name" id="profile-heading">
+            {profile.fullName}
+          </h1>
+          <p className="intro__line">
+            {pick(lang, intro.school)}
+            <span aria-hidden="true"> · </span>
+            {pick(lang, intro.role)}
+          </p>
+        </div>
+        <div className="intro__read">
+          <p className="intro__hook">{pick(lang, intro.hook)}</p>
+          <div className="intro__copy">
+            {intro.bio.map((para) => (
+              <p key={para.en}>{pick(lang, para)}</p>
+            ))}
+          </div>
+        </div>
       </div>
     </Plate>
   );

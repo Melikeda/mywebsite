@@ -74,6 +74,20 @@ export const intro = {
     tr: "Düzce Üniversitesi",
     en: "Düzce University",
   },
+  hook: {
+    tr: "Yazılım, veri ve yapay zekâ ile ilgileniyorum.",
+    en: "I’m interested in software, data, and AI.",
+  },
+  bio: [
+    {
+      tr: "Stajlarda ve kendi işlerimde kod yazıyor, veri hazırlıyor, modeli küçük bir ürüne çevirmeye çalışıyorum. Görü, dil modelleri ve uygulama tarafında deneme fırsatım oldu; ekip içinde de çalıştım.",
+      en: "In internships and my own work I write code, prepare data, and try to turn a model into a small product. I’ve had room to try vision, language models, and the app side; I’ve also worked in a team.",
+    },
+    {
+      tr: "Kampüs dışında gönüllü ekiplerde, liderlik programlarında ve iklim / gençlik toplantılarında yer alıyorum.",
+      en: "Off campus I join volunteer groups, leadership programmes, and climate / youth gatherings.",
+    },
+  ],
   film: [
     {
       src: "/profile/03.jpg",
@@ -111,13 +125,6 @@ export const intro = {
       },
     },
     {
-      src: "/profile/06.jpg",
-      alt: {
-        tr: "Parkta, akşam ışığında",
-        en: "In the park at dusk",
-      },
-    },
-    {
       src: "/profile/07.jpg",
       alt: {
         tr: "Karlı ormanda",
@@ -136,13 +143,6 @@ export const intro = {
       alt: {
         tr: "Kotor’da, eski kent duvarının önünde",
         en: "In Kotor, in front of the old town wall",
-      },
-    },
-    {
-      src: "/profile/10.jpg",
-      alt: {
-        tr: "Kırmızı lalelerle",
-        en: "With red tulips",
       },
     },
     {
@@ -179,7 +179,7 @@ export const timeline: {
   stops: [
     {
       id: "duzce",
-      when: { tr: "2022 · hala devam etmekte", en: "2022 · still ongoing" },
+      when: { tr: "2022 · günümüz", en: "2022 · Present" },
       place: { tr: "Düzce Üniversitesi", en: "Düzce University" },
       role: {
         tr: "Bilgisayar Mühendisliği · 4. sınıf",
@@ -236,12 +236,11 @@ export const timeline: {
         en: "Intern · remote informatics",
       },
       note: {
-        tr: "Uzaktan, kısa yaz dönemi.",
-        en: "Remote, a short summer term.",
+        tr: "Mesai chatbot’u geliştirdim.",
+        en: "I built a work-hours chatbot.",
       },
       tags: [
         { tr: "Excel/CSV", en: "Excel/CSV" },
-        { tr: "Girin", en: "Girin" },
         { tr: "FastAPI", en: "FastAPI" },
         { tr: "Ollama", en: "Ollama" },
         { tr: "LLaMA 3", en: "LLaMA 3" },
@@ -265,6 +264,10 @@ export const timeline: {
         en: "Cerebrum Tech · Bilkent Cyberpark, Ankara",
       },
       role: { tr: "AI Intern · Ar-Ge · ofis", en: "AI Intern · R&D · on site" },
+      note: {
+        tr: "Yolocilin’i geliştirdim — mobil ilaç tanıma asistanı.",
+        en: "I built Yolocilin — a mobile medicine-recognition assistant.",
+      },
       tags: [
         { tr: "YOLOv8n", en: "YOLOv8n" },
         { tr: "OpenCV", en: "OpenCV" },
