@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "animejs": "^4.5.0",
-    "maplibre-gl": "^6.11.2",
+    "maplibre-gl": "^6.13.0",
     "react": "^19.3.0",
     "react-dom": "^19.3.0"
   },
